@@ -1,6 +1,6 @@
-import lahjaArpoja.logiikka.Arvonta;
+
 import java.util.ArrayList;
-import lahjaArpoja.logiikka.Arvonta2;
+import lahjaArpoja.logiikka.Arvonta;
 
 
 
@@ -19,7 +19,7 @@ public class lahjaArpoja {
         nimet.add("kultakala");
         
         
-        Arvonta2 arvonta = new Arvonta2(nimet);
+        Arvonta arvonta = new Arvonta(nimet);
         arvonta.parienArvonta();
         
     }
