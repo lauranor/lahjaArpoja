@@ -14,6 +14,10 @@ public class Arvonta {
     }
 
     public void parienArvonta() {
+        
+        if (osallistujat.size() == 0) {
+            System.out.println("Ei annettuja osallistujia.");
+        }
 
         for (String osallistuja : osallistujat) {                               //Jokaiselle osallistujalle saadaan
             int random = getRandom(osallistujat.size());                    //pari arpomalla indeksi.
@@ -37,8 +41,8 @@ public class Arvonta {
         } else if (onkoItseParina()) {
             System.out.println("Arvonta suoritettu onnistuneesti.");
             
-//            ArvottuLista lista = new ArvottuLista(osallistujat, indeksit);
-//            lista.laitaListalle();
+            ArvottuLista lista = new ArvottuLista(osallistujat, indeksit);
+            lista.laitaListalle();
         }
 
     }

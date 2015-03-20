@@ -17,10 +17,10 @@ public class ArvottuLista {
     
     public void laitaListalle() {
         for (String antaja : antajat) {
-            int antajanIndeksi = antajat.indexOf(antaja);
-            int saajanIndeksi = saajat[antajanIndeksi] -1;
-//            lista.put(antaja,saaja);
-//            System.out.println(antajanIndeksi +" "+ saajanIndeksi);
+            int i = antajat.indexOf(antaja);
+            
+            lista.put(antaja, antajat.get(saajat[i] -1) );
+
         }
         
     }

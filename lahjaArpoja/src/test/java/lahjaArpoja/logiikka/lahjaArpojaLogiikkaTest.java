@@ -47,4 +47,8 @@ public class lahjaArpojaLogiikkaTest {
         assertEquals(0, 0);
      
     }
+    
+//    Täällä ei oikeestaan oo testejä, koska tän hetkiselle logiikalle ei sellasia oikein saa tehtyä, koska metodit 
+//    ei palauta mitään ulospäin. ts. pitäis kirjottaa 
+//    uusia metodeita että sais testattua toimivuutta, eikä siinä kuulemma oo järkeä.
 }
