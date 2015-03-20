@@ -15,3 +15,5 @@
 18.3.		1,5h		logiikan tekemistä
 
 19.3. 		2h		logiikkaa vieläkin
+
+20.3.		2h		luokkakaavio, logiikan korjaus + lisäyksiä
