@@ -15,18 +15,13 @@ public class ArvottuLista {
         this.saajat = saajat;
     }
     
-    public void laitaListalle() {
-        for (String antaja : antajat) {
-            int i = antajat.indexOf(antaja);
-            
-            lista.put(antaja, antajat.get(saajat[i] -1) );
-
+    public HashMap laitaListalle() {                                            //Palauttaa valmiin HashMapin
+        for (int i = 0; i < antajat.size(); i++) {
+            lista.put(antajat.get(i), antajat.get(saajat[i]-1));
         }
         
-    }
-    
-    public String kenelleAnnan(String antaja) {
-        return lista.get(antaja);
+        return lista;
+        
     }
     
 }
