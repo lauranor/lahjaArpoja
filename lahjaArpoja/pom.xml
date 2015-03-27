@@ -41,10 +41,10 @@
             <version>1.1.4</version>
             <configuration>
                 <targetClasses>
-                    <param>lahjaArpoja.Logiikka.*</param>
+                    <param>lahjaArpoja.logiikka.*</param>
                 </targetClasses>
                 <targetTests>
-                    <param>lahjaArpoja.Logiikka.*</param>
+                    <param>lahjaArpoja.logiikka.*</param>
                 </targetTests>
             </configuration>
         </plugin>

@@ -44,6 +44,7 @@ public class lahjaArpojaLogiikkaTest {
     @Test
     public void konstruktoriToimiiOikein() {
         Arvonta arvonta = new Arvonta(new ArrayList<String>());
+        
         assertEquals(0, 0);
      
     }
