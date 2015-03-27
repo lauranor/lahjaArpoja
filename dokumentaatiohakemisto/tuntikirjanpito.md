@@ -18,6 +18,8 @@
 
 20.3.		2h		luokkakaavio, logiikan korjaus + lisäyksiä
 
+-----------------------------
+
 24.3.		1h		logiikkaa ja pit-raporttien selvittelyä
 
 27.3.		4h		käyttöliittymän opettelu, luokkakaavio
