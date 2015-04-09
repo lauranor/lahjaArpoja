@@ -10,10 +10,16 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
+import lahjaArpoja.logiikka.HenkiloVarasto;
 
 public class Kayttoliittyma implements Runnable {
 
     private JFrame frame;
+    private HenkiloVarasto henkiloVarasto;
+
+    public Kayttoliittyma(HenkiloVarasto varasto) {
+        this.henkiloVarasto = varasto;
+    }
 
     @Override
     public void run() {
@@ -30,21 +36,17 @@ public class Kayttoliittyma implements Runnable {
     }
 
     private void luoKomponentit(Container container) {
-//        JButton nappi = new JButton("Viestitä!");
-//        nappi.addActionListener(new ViestiKuuntelija());
-//
-//        container.add(nappi);
-
         GridLayout layout = new GridLayout(3, 2);
         container.setLayout(layout);
-        
+
         JLabel nimiTeksti = new JLabel("Anna nimesi: ");
         JTextField nimikentta = new JTextField();
         JLabel toiveTeksti = new JLabel("Lahjatoiveesi: ");
         JTextField toivekentta = new JTextField();
-        
+
         JButton nappi = new JButton("Lisää arvontaan!");
-        
+        nappi.addActionListener(new HenkilonLisaysKuuntelija(henkiloVarasto, nimikentta, toivekentta));
+
         container.add(nimiTeksti);
         container.add(nimikentta);
         container.add(toiveTeksti);

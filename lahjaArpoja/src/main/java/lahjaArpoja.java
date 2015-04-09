@@ -8,9 +8,9 @@ import lahjaArpoja.logiikka.Arvonta;
 public class lahjaArpoja {
 
     public static void main(String[] args) {
-        
-        Kayttoliittyma kl = new Kayttoliittyma();
-        SwingUtilities.invokeLater(kl);
+//        HenkiloVarasto varasto
+//        Kayttoliittyma kl = new Kayttoliittyma();
+//        SwingUtilities.invokeLater(kl);
 //        Scanner scanner = new Scanner(System.in);
 //        ArrayList<String> nimet = new ArrayList<>();
 //        System.out.println("Anna osallistujan nimi, enter lopettaa:");
