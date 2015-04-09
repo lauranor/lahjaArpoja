@@ -12,4 +12,8 @@ public class Henkilo {
         this.nimi = nimi;
         this.lahjatoive = toive;
     }
+    
+    public String getName() {
+        return this.nimi;
+    }
 }

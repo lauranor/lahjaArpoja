@@ -1,27 +1,38 @@
-
 package UI;
 
-import lahjaArpoja.logiikka.HenkiloVarasto;
 import lahjaArpoja.logiikka.Henkilo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JTextField;
+import lahjaArpoja.logiikka.Arvonta;
+import lahjaArpoja.logiikka.HenkilotTallessa;
 
-public class HenkilonLisaysKuuntelija implements ActionListener{
-    private HenkiloVarasto varasto;
+public class HenkilonLisaysKuuntelija implements ActionListener {
+
     private JTextField nimiKentta;
     private JTextField lahjatoiveKentta;
+    private HenkilotTallessa ht;
+    private Arvonta arvonta;
 
-    
-    public HenkilonLisaysKuuntelija(HenkiloVarasto v, JTextField nimi, JTextField toive) {
-        this.varasto = v;
-        this.nimiKentta = nimi;
-        this.lahjatoiveKentta = toive;
+    public HenkilonLisaysKuuntelija() {
+        ht = new HenkilotTallessa();
     }
+
     @Override
     public void actionPerformed(ActionEvent ae) {
-        Henkilo henkilo = new Henkilo(nimiKentta.getText(), lahjatoiveKentta.getText());
-        this.varasto.talleta(henkilo);
+        String nappi = ae.getActionCommand();
+
+        if (nappi.equals("Suorita arvonta")) {
+            System.out.println("arvotaan parit.");
+            arvonta = new Arvonta(ht.getLista());
+        } else if (nappi.equals("Lisää arvontaan!")) {
+            System.out.println("lisätään henkilö arvontaan.");
+            Henkilo henkilo = new Henkilo(nimiKentta.getText(), lahjatoiveKentta.getText());
+            ht.lisaa(henkilo);
+        } else if (nappi.equals("Näytä osallistujat")) {
+            ht.tulostaOsallistujat();
+        }
+
     }
-    
+
 }
