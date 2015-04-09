@@ -34,5 +34,13 @@ public class HenkilonLisaysKuuntelija implements ActionListener {
         }
 
     }
+    
+    public void setNimikentta(JTextField nimi) {
+        this.nimiKentta = nimi;
+    }
+    
+    public void setToivekentta(JTextField toive) {
+        this.lahjatoiveKentta = toive;
+    }
 
 }
