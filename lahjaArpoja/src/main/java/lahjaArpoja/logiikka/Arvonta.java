@@ -1,10 +1,14 @@
 package lahjaArpoja.logiikka;
+/* *
+ * Luokka 
+ */
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
 public class Arvonta {
+
     private HashMap<String, String> arvotut;                                    //Valmis HashMap, jossa pareina lahjan antaja ja saaja
     private ArrayList<String> osallistujat;                                     //Arvontaan osallistuvat
     private int[] indeksit;                                                     //Arvottujen parien indeksit välillä 1..osallistujat.size+1
@@ -14,6 +18,10 @@ public class Arvonta {
         this.indeksit = new int[osallistujat.size()];
     }
 
+    /**
+     * Arpoo osallistujille pariksi indeksin, jonka perusteella jokainen osallistuja saa
+     * parikseen toisen listan osallistujista.
+     */
     public void parienArvonta() {
 
         if (osallistujat.size() == 0) {
@@ -28,11 +36,9 @@ public class Arvonta {
             }
 
             indeksit[osallistujat.indexOf(osallistuja)] = random;
-//            System.out.print(osallistuja + " - " + osallistujat.indexOf(osallistuja) + " - " + random + "\n");                             //kun indeksi on "vapaana", se lisätään listalle
 
         }
 
-//        System.out.println("onkoItseParina:" + onkoItseParina());
         if (!onkoItseParina()) {
             System.out.println("\nArvotaan uudestaan");
             tyhjennaIndeksit();
@@ -46,14 +52,23 @@ public class Arvonta {
         }
 
     }
-
+    
+    /**
+    * Arpoo luvun väliltä 1 - osallistujien määrä.
+    * @param montako osallistujien määärä
+    * @return random luku väliltä 1 - osallistujien määrä
+    */
     private int getRandom(int montako) {
         Random random = new Random();
         int i = random.nextInt(montako) + 1;
-//        System.out.println(i);
         return i;
     }
 
+    /**
+     * tarkistaa onko arvottu indeksi uusi
+     * @param r arvottu indeksi
+     * @return  false jos listalla ei ole parametrina annettua indeksiä, muuten true.
+     */
     private boolean onkoListalla(int r) {
         if (indeksit.length == 0) {
             return false;
@@ -68,10 +83,14 @@ public class Arvonta {
         return false;
     }
 
+    /**
+     * Tarkistaa onko arvonnassa joku saanut itse itsensä parikseen
+     * @return  false jos jollakulla on itsensä parina, muuten true
+     */
     private boolean onkoItseParina() {
         for (int n = 0; n < indeksit.length; n++) {
             if (n == (indeksit[n] - 1)) {
-                return false;                                                   //käydään läpi taulukon alkiot, 
+                return false;                                                 
             }
         }
         return true;
@@ -83,7 +102,12 @@ public class Arvonta {
         }
 
     }
-    
+
+    /**
+     * Palauttaa antajalle arvotun parin
+     * @param antaja 
+     * @return lahjan saajan nimi
+     */
     public String getPari(String antaja) {
         if (!arvotut.containsKey(antaja)) {
             return "Et ole mukana arvonnassa :(";
