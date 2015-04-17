@@ -36,6 +36,7 @@ public class ArvontaTest {
 
     @Before
     public void setUp() {
+        osallistujat = new ArrayList();
     }
 
     @After
@@ -44,16 +45,45 @@ public class ArvontaTest {
 
     @Test
     public void PalauttaaOikeinKunHenkiloEiMukana() {
-//        osallistujat.add("Kirsi");
-//        osallistujat.add("Pekka");
-//        osallistujat.add("Marjukka");
-//        osallistujat.add("Paavo");
-//        
-//        a = new Arvonta(osallistujat);
-//        a.parienArvonta();
+        osallistujat.add("Kirsi");
+        osallistujat.add("Pekka");
+        osallistujat.add("Marjukka");
+        osallistujat.add("Paavo");
+        
+        a = new Arvonta(osallistujat);
+        a.parienArvonta();
         
 
-//        assertEquals("Et ole mukana arvonnassa :(", a.getPari("Riitta"));     Ei jostain syystä toimi?
+        assertEquals("Et ole mukana arvonnassa :(", a.getPari("Riitta"));    // Ei jostain syystä toimi?
+    }
+    
+    @Test
+    public void palauttaaOikeinKunKaksiOsallistujaa() {
+        osallistujat.add("Ykkönen");
+        osallistujat.add("Kakkonen");
+        
+        a = new Arvonta(osallistujat);
+        a.parienArvonta();
+        
+        assertEquals("Sinun lahjan saajasi on Ykkönen", a.getPari("Kakkonen"));
+        assertEquals("Sinun lahjan saajasi on Kakkonen", a.getPari("Ykkönen"));
+    }
+    
+    @Test
+    public void arvotuillaEiItseaParina() {
+        osallistujat.add("Kirsi");
+        osallistujat.add("Pekka");
+        osallistujat.add("Marjukka");
+        osallistujat.add("Paavo");
+        
+        a = new Arvonta(osallistujat);
+        a.parienArvonta();
+        
+        for (String nimi : a.getArvotut().keySet()) {
+            assertFalse(nimi.equals(a.getArvotut().get(nimi)));
+        }
+        
+        
     }
     
     

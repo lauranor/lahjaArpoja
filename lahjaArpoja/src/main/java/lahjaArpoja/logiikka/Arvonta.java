@@ -9,8 +9,8 @@ import java.util.Random;
 
 public class Arvonta {
 
-    private HashMap<String, String> arvotut;                                    //Valmis HashMap, jossa pareina lahjan antaja ja saaja
-    private ArrayList<String> osallistujat;                                     //Arvontaan osallistuvat
+    private HashMap<Henkilo, Henkilo> arvotut;                                    //Valmis HashMap, jossa pareina lahjan antaja ja saaja
+    private ArrayList<Henkilo> osallistujat;                                     //Arvontaan osallistuvat
     private int[] indeksit;                                                     //Arvottujen parien indeksit välillä 1..osallistujat.size+1
 
     public Arvonta(ArrayList osallistujat) {
@@ -24,15 +24,16 @@ public class Arvonta {
      */
     public void parienArvonta() {
 
-        if (osallistujat.size() == 0) {
-            System.out.println("Ei annettuja osallistujia.");
+        if (osallistujat.size() <= 1) {
+            System.out.println("Anna enemmän osallistujia.");
+            return;
         }
 
-        for (String osallistuja : osallistujat) {                               //Jokaiselle osallistujalle saadaan
-            int random = getRandom(osallistujat.size());                    //pari arpomalla indeksi.
+        for (Henkilo osallistuja : osallistujat) {                               //Jokaiselle osallistujalle saadaan
+            int random = getRandom(osallistujat.size());                        //pari arpomalla indeksi.
 
             while (onkoListalla(random)) {                                      //Tarkistetaan ettei indeksi ole vielä arvottujen joukossa
-                random = getRandom(osallistujat.size());                    //Jos on, arvotaan uusi random.
+                random = getRandom(osallistujat.size());                        //Jos on, arvotaan uusi random.
             }
 
             indeksit[osallistujat.indexOf(osallistuja)] = random;
@@ -40,12 +41,12 @@ public class Arvonta {
         }
 
         if (!onkoItseParina()) {
-            System.out.println("\nArvotaan uudestaan");
+//            System.out.println("\nArvotaan uudestaan");
             tyhjennaIndeksit();
             parienArvonta();                                                    //jos itsensä parina, uusi arvonta.
 
         } else if (onkoItseParina()) {
-            System.out.println("Arvonta suoritettu onnistuneesti.");
+//            System.out.println("Arvonta suoritettu onnistuneesti.");
 
             ArvottuLista lista = new ArvottuLista(osallistujat, indeksit);
             arvotut = lista.laitaListalle();
@@ -113,6 +114,10 @@ public class Arvonta {
             return "Et ole mukana arvonnassa :(";
         }
         return "Sinun lahjan saajasi on " + arvotut.get(antaja);
+    }
+    
+    public HashMap<Henkilo, Henkilo> getArvotut() {
+        return arvotut;
     }
 
 }

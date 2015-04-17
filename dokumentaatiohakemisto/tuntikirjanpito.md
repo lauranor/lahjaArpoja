@@ -37,3 +37,9 @@
 9.4		4h		käyttöliittymä, muutoksia luokkiin
 
 10.4 		2h		testien opettelua, javadocin aloitus
+
+-----------------------------
+
+14.4		2h		lisää testejä, rakenteen korjailua
+
+17.4		3h		sekvenssikaaviot, ongelmien korjailu

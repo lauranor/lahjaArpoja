@@ -4,11 +4,13 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
+import lahjaArpoja.logiikka.Arvonta;
 
 
 
@@ -16,16 +18,19 @@ public class Kayttoliittyma implements Runnable {
 
     private JFrame frame;
     private HenkilonLisaysKuuntelija kuuntelija;
+    private Arvonta arvonta;
+    private JTextField nimikentta;
+    private JTextField toivekentta;
 
 
     public Kayttoliittyma() {
-        kuuntelija = new HenkilonLisaysKuuntelija();
+        kuuntelija = new HenkilonLisaysKuuntelija(this);
     }
 
     @Override
     public void run() {
         frame = new JFrame("Lahja-arpoja");
-        frame.setPreferredSize(new Dimension(400, 200));
+        frame.setPreferredSize(new Dimension(400, 400));
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -40,24 +45,27 @@ public class Kayttoliittyma implements Runnable {
         GridLayout layout = new GridLayout(4, 2);
 //        FlowLayout layout = new FlowLayout(2, 3, 4);
         container.setLayout(layout);
-        HenkilonLisaysKuuntelija hlk= new HenkilonLisaysKuuntelija();
+        
        
         JLabel nimiTeksti = new JLabel("Anna nimesi: ");
-        JTextField nimikentta = new JTextField();
-        hlk.setNimikentta(nimikentta);
+        nimikentta = new JTextField();
+        kuuntelija.setNimikentta(nimikentta);
         JLabel toiveTeksti = new JLabel("Lahjatoiveesi: ");
-        JTextField toivekentta = new JTextField();
-        hlk.setToivekentta(toivekentta);
+        toivekentta = new JTextField();
+        kuuntelija.setToivekentta(toivekentta);
         
 
         JButton arvontaNappi = new JButton("Suorita arvonta");
-        arvontaNappi.addActionListener(hlk);
+        arvontaNappi.addActionListener(kuuntelija);
         
         JButton lisaysNappi = new JButton("Lisää arvontaan!");
-        lisaysNappi.addActionListener(hlk);
+        lisaysNappi.addActionListener(kuuntelija);
         
         JButton naytaNappi = new JButton("Näytä osallistujat");
-        naytaNappi.addActionListener(hlk);
+        naytaNappi.addActionListener(kuuntelija);
+        
+        JButton annaParitNappi = new JButton("Näytä arvotut parit");
+        annaParitNappi.addActionListener(kuuntelija);
 
         container.add(nimiTeksti);
         container.add(nimikentta);
@@ -66,11 +74,26 @@ public class Kayttoliittyma implements Runnable {
         container.add(arvontaNappi);
         container.add(lisaysNappi);
         container.add(naytaNappi);
+        container.add(annaParitNappi);
 
         
     }
 
     public JFrame getFrame() {
         return frame;
+    }
+    
+    public void tyhjennaNapit() {
+        nimikentta.setText("");
+        toivekentta.setText("");
+    }
+    
+    public void arvoParit(ArrayList henkilot) {
+        arvonta = new Arvonta(henkilot);
+        arvonta.parienArvonta();
+    }
+    
+    public Arvonta getArvonta() {
+        return arvonta;
     }
 }

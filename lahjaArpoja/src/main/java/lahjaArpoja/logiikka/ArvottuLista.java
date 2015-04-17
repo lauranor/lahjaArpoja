@@ -6,8 +6,8 @@ import java.util.HashMap;
 
 
 public class ArvottuLista {
-    private HashMap<String, String> lista = new HashMap<>();
-    private ArrayList<String> antajat;
+    private HashMap<Henkilo, Henkilo> lista = new HashMap<>();
+    private ArrayList<Henkilo> antajat;
     private int[] saajat;
     
     public ArvottuLista(ArrayList antajat, int[] saajat) {
