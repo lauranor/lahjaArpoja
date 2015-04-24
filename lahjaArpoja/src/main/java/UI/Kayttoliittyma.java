@@ -63,9 +63,6 @@ public class Kayttoliittyma implements Runnable {
         
         JButton naytaNappi = new JButton("Näytä osallistujat");
         naytaNappi.addActionListener(kuuntelija);
-        
-        JButton annaParitNappi = new JButton("Näytä arvotut parit");
-        annaParitNappi.addActionListener(kuuntelija);
 
         container.add(nimiTeksti);
         container.add(nimikentta);
@@ -74,9 +71,7 @@ public class Kayttoliittyma implements Runnable {
         container.add(arvontaNappi);
         container.add(lisaysNappi);
         container.add(naytaNappi);
-        container.add(annaParitNappi);
 
-        
     }
 
     public JFrame getFrame() {
@@ -88,6 +83,11 @@ public class Kayttoliittyma implements Runnable {
         toivekentta.setText("");
     }
     
+    
+    /**
+     * Käynnistää uuden arvonnan, jolle annetaan parametrina saatu ArrayList.
+     * @param henkilot 
+     */
     public void arvoParit(ArrayList henkilot) {
         arvonta = new Arvonta(henkilot);
         arvonta.parienArvonta();
@@ -96,4 +96,11 @@ public class Kayttoliittyma implements Runnable {
     public Arvonta getArvonta() {
         return arvonta;
     }
+    
+    /**
+     * Piilottaa ikkunan, jolla
+     */
+//    public void suljeArvontaIkkuna() {
+//        frame.setVisible(false);
+//    }
 }

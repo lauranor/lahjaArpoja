@@ -110,14 +110,27 @@ public class Arvonta {
      * @return lahjan saajan nimi
      */
     public String getPari(String antaja) {
-        if (!arvotut.containsKey(antaja)) {
-            return "Et ole mukana arvonnassa :(";
+        for (Henkilo h : arvotut.keySet()) {
+            if (h.getName().equals(antaja)) {
+                return "Annat lahjan henkilölle " + arvotut.get(h).toString();
+            }
         }
-        return "Sinun lahjan saajasi on " + arvotut.get(antaja);
+        
+        return "Et ole mukana arvonnassa :(";
     }
     
     public HashMap<Henkilo, Henkilo> getArvotut() {
         return arvotut;
+    }
+    
+    private boolean onkoArvonnassa(String nimi) {
+        for (Henkilo h : arvotut.keySet()) {
+            if (h.getName().equals(nimi)) {
+                return true;
+            }
+        }
+        
+        return false;
     }
 
 }

@@ -43,6 +43,11 @@ public class HenkiloTest {
     public void palauttaaNimenOikein() {
         assertEquals("Pekka" , h.getName() );
     }
+    
+    @Test
+    public void palauttaaToStringOikein() {
+        assertEquals("Pekka", h.toString());
+    }
 
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:

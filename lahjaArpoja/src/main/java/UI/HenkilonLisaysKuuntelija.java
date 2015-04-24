@@ -4,7 +4,6 @@ import lahjaArpoja.logiikka.Henkilo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.HashMap;
 import javax.swing.JTextField;
 
 public class HenkilonLisaysKuuntelija implements ActionListener {
@@ -26,12 +25,12 @@ public class HenkilonLisaysKuuntelija implements ActionListener {
 
         if (nappi.equals("Suorita arvonta")) {
             suoritaArvonta();
+            LahjaKayttoLiittyma lkl = new LahjaKayttoLiittyma(henkilot, kayttoliittyma, this);
+            lkl.run();
         } else if (nappi.equals("Lisää arvontaan!")) {
             lisaaArvontaan();
         } else if (nappi.equals("Näytä osallistujat")) {
             tulostaOsallistujat();
-        } else if (nappi.equals("Näytä arvotut parit")) {
-            naytaParit();
         }
 
     }
@@ -44,17 +43,27 @@ public class HenkilonLisaysKuuntelija implements ActionListener {
         this.lahjatoiveKentta = toive;
     }
 
+    
+    /**
+     * Tulostaa arvontaan ilmoitettujen henkilöiden nimet.
+     */
     public void tulostaOsallistujat() {
         for (Henkilo h : henkilot) {
             System.out.println(h.getName());
         }
     }
 
+    
     private void suoritaArvonta() {
         System.out.println("arvotaan parit.");
         kayttoliittyma.arvoParit(henkilot);
     }
     
+    /**
+     * Jos nimikentässä on tekstiä, luodaan uusi Henkilö-olio, joka lisätään
+     * ArrayList henkilot -listaan.
+     * Jos nimi tyhjä, palataan alkuruutuun.
+     */
     private void lisaaArvontaan() {
         if (nimiKentta.getText().equals("")) {
                 System.out.println("Et antanut oikeaa nimeä, yritä uudelleen.");
@@ -66,15 +75,19 @@ public class HenkilonLisaysKuuntelija implements ActionListener {
             }
     }
     
-    private void naytaParit() {
-        if (kayttoliittyma.getArvonta().getArvotut().isEmpty()) {
-            throw new IllegalArgumentException("ei arvottuja pareja");
-        }
-        HashMap<Henkilo, Henkilo> parit = kayttoliittyma.getArvonta().getArvotut();
-        
-        for (Henkilo henkilo : parit.keySet()) {
-            System.out.println(henkilo.getName() + " antaa lahjan henkilölle " + parit.get(henkilo).getName());
-        }
+//    private void naytaParit() {
+//        if (kayttoliittyma.getArvonta().getArvotut().isEmpty()) {
+//            throw new IllegalArgumentException("ei arvottuja pareja");
+//        }
+//        HashMap<Henkilo, Henkilo> parit = kayttoliittyma.getArvonta().getArvotut();
+//        
+//        for (Henkilo henkilo : parit.keySet()) {
+//            System.out.println(henkilo.getName() + " antaa lahjan henkilölle " + parit.get(henkilo).getName());
+//        }
+//    }
+    
+    public ArrayList getHenkilot() {
+        return this.henkilot;
     }
 
 }

@@ -43,3 +43,11 @@
 14.4		2h		lisää testejä, rakenteen korjailua
 
 17.4		3h		sekvenssikaaviot, ongelmien korjailu
+
+-----------------------------
+
+21.4		2h
+
+23.4		1,5h
+
+24.4		2,5h		

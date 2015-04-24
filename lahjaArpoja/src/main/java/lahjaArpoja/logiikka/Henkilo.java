@@ -1,7 +1,8 @@
 package lahjaArpoja.logiikka;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Objects;
+
+
 
 public class Henkilo {
 
@@ -16,4 +17,10 @@ public class Henkilo {
     public String getName() {
         return this.nimi;
     }
+    
+    @Override
+    public String toString() {
+        return this.getName();
+    }
+    
 }
