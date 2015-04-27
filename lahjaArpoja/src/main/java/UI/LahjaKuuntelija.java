@@ -32,6 +32,7 @@ public class LahjaKuuntelija implements ActionListener {
             naytaPariRuudulla(pari);
             lahjakl.tyhjennaKentta();
         } else if (nappi.equals("Näytä lahjatoiveet")) {
+            System.out.println("Näytetään toiveet");
             Lahjatoiveet toiveet = new Lahjatoiveet(lahjakl.getHenkilot());
             toiveet.run();
         }   

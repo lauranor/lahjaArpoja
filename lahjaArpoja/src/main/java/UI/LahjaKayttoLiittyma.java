@@ -63,6 +63,7 @@ public class LahjaKayttoLiittyma implements Runnable {
         JButton nappi = new JButton("Näytä lahjaparini");
         nappi.addActionListener(lahjakuuntelija);
         JButton toiveet = new JButton("Näytä lahjatoiveet");
+        toiveet.addActionListener(lahjakuuntelija);
         
         container.add(nimiTeksti);
         container.add(nimi);

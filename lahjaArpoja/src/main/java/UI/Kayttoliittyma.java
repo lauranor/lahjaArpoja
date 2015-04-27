@@ -5,12 +5,14 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import lahjaArpoja.logiikka.Arvonta;
+
 
 
 
@@ -30,6 +32,7 @@ public class Kayttoliittyma implements Runnable {
     @Override
     public void run() {
         frame = new JFrame("Lahja-arpoja");
+//        frame.setContentPane(new JLabel(new ImageIcon("C:\\\\Users\\\\Computer\\\\Downloads\\\\christmas-tree.png")));
         frame.setPreferredSize(new Dimension(400, 400));
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
