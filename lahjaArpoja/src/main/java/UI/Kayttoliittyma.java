@@ -10,6 +10,8 @@ import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -43,14 +45,18 @@ public class Kayttoliittyma implements Runnable {
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        luoKomponentit(frame.getContentPane());
+        try {
+            luoKomponentit(frame.getContentPane());
+        } catch (IOException ex) {
+            Logger.getLogger(Kayttoliittyma.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         frame.pack();
         frame.setVisible(true);
 
     }
 
-    private void luoKomponentit(Container container) {
+    private void luoKomponentit(Container container) throws IOException {
 //        JLabel contentPane = new JLabel();
 
 //        contentPane.setIcon((Icon) new File("christmas-tree.png"));
@@ -65,10 +71,13 @@ public class Kayttoliittyma implements Runnable {
         toivekentta = new JTextField();
         kuuntelija.setToivekentta(toivekentta);
 
+        Image img = ImageIO.read(getClass().getResource("resources/paketti.jpg")); 
+
         ImageIcon paketti = new ImageIcon("paketti.jpg");
 
 //        JButton arvontaNappi = new JButton("Suorita arvonta");
-        JButton arvontaNappi = new JButton(paketti);
+        JButton arvontaNappi = new JButton("Suorita arvonta");
+        arvontaNappi.setIcon(new ImageIcon(img));
 
         arvontaNappi.addActionListener(kuuntelija);
 
