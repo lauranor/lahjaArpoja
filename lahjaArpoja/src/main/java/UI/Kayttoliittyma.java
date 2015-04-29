@@ -3,18 +3,23 @@ package UI;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import lahjaArpoja.logiikka.Arvonta;
-
-
-
 
 public class Kayttoliittyma implements Runnable {
 
@@ -23,7 +28,8 @@ public class Kayttoliittyma implements Runnable {
     private Arvonta arvonta;
     private JTextField nimikentta;
     private JTextField toivekentta;
-
+    private Image img = Toolkit.getDefaultToolkit().createImage("background.jpg");
+    private Graphics g;
 
     public Kayttoliittyma() {
         kuuntelija = new HenkilonLisaysKuuntelija(this);
@@ -32,8 +38,8 @@ public class Kayttoliittyma implements Runnable {
     @Override
     public void run() {
         frame = new JFrame("Lahja-arpoja");
-//        frame.setContentPane(new JLabel(new ImageIcon("C:\\\\Users\\\\Computer\\\\Downloads\\\\christmas-tree.png")));
         frame.setPreferredSize(new Dimension(400, 400));
+        ;
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,25 +51,30 @@ public class Kayttoliittyma implements Runnable {
     }
 
     private void luoKomponentit(Container container) {
+//        JLabel contentPane = new JLabel();
+
+//        contentPane.setIcon((Icon) new File("christmas-tree.png"));
         GridLayout layout = new GridLayout(4, 2);
 //        FlowLayout layout = new FlowLayout(2, 3, 4);
         container.setLayout(layout);
-        
-       
+
         JLabel nimiTeksti = new JLabel("Anna nimesi: ");
         nimikentta = new JTextField();
         kuuntelija.setNimikentta(nimikentta);
         JLabel toiveTeksti = new JLabel("Lahjatoiveesi: ");
         toivekentta = new JTextField();
         kuuntelija.setToivekentta(toivekentta);
-        
 
-        JButton arvontaNappi = new JButton("Suorita arvonta");
+        ImageIcon paketti = new ImageIcon("paketti.jpg");
+
+//        JButton arvontaNappi = new JButton("Suorita arvonta");
+        JButton arvontaNappi = new JButton(paketti);
+
         arvontaNappi.addActionListener(kuuntelija);
-        
+
         JButton lisaysNappi = new JButton("Lisää arvontaan!");
         lisaysNappi.addActionListener(kuuntelija);
-        
+
         JButton naytaNappi = new JButton("Näytä osallistujat");
         naytaNappi.addActionListener(kuuntelija);
 
@@ -80,26 +91,30 @@ public class Kayttoliittyma implements Runnable {
     public JFrame getFrame() {
         return frame;
     }
-    
+
     public void tyhjennaNapit() {
         nimikentta.setText("");
         toivekentta.setText("");
     }
-    
-    
+
+    public void paintComponent(Graphics g) {
+        g.drawImage(img, 0, 0, null);
+    }
+
     /**
      * Käynnistää uuden arvonnan, jolle annetaan parametrina saatu ArrayList.
-     * @param henkilot 
+     *
+     * @param henkilot
      */
     public void arvoParit(ArrayList henkilot) {
         arvonta = new Arvonta(henkilot);
         arvonta.parienArvonta();
     }
-    
+
     public Arvonta getArvonta() {
         return arvonta;
     }
-    
+
     /**
      * Piilottaa ikkunan, jolla
      */
