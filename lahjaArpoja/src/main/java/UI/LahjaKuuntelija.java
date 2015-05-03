@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JTextField;
 
 /**
- *
+ *Luokka kuuntelee nappien painamiset.
  * @author lauranor
  */
 public class LahjaKuuntelija implements ActionListener {
@@ -32,7 +32,6 @@ public class LahjaKuuntelija implements ActionListener {
             naytaPariRuudulla(pari);
             lahjakl.tyhjennaKentta();
         } else if (nappi.equals("Näytä lahjatoiveet")) {
-            System.out.println("Näytetään toiveet");
             Lahjatoiveet toiveet = new Lahjatoiveet(lahjakl.getHenkilot());
             toiveet.run();
         }   

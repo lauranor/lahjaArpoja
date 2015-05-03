@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
  */
 public class ArvontaTest {
 
-    private ArrayList<String> osallistujat;
+    private ArrayList<Henkilo> osallistujat;
     private Arvonta a;
 
     public ArvontaTest() {
@@ -49,48 +49,50 @@ public class ArvontaTest {
     
 
 
-//    @Test
-//    public void PalauttaaOikeinKunHenkiloEiMukana() {
-//        osallistujat.add("Kirsi");
-//        osallistujat.add("Pekka");
-//        osallistujat.add("Marjukka");
-//        osallistujat.add("Paavo");
-//        
-//        a = new Arvonta(osallistujat);
-//        a.parienArvonta();
-//        
-//
-//        assertEquals("Et ole mukana arvonnassa :(", a.getPari("Riitta"));    
-//    }
+    @Test
+    public void PalauttaaOikeinKunHenkiloEiMukana() {
+        osallistujat.add(new Henkilo("Paavo", "kissa"));
+        osallistujat.add(new Henkilo("Pekka", "koira"));
+        osallistujat.add(new Henkilo("Marjukka", "kala"));
+        osallistujat.add(new Henkilo("Paavo", "sitruuna"));
+        
+        a = new Arvonta(osallistujat);
+        a.parienArvonta();
+        
+
+        assertEquals("Et ole mukana arvonnassa :(", a.getPari("Riitta"));    
+    }
     
-//    @Test
-//    public void palauttaaOikeinKunKaksiOsallistujaa() {
-//        osallistujat.add("Ykkönen");
-//        osallistujat.add("Kakkonen");
-//        
-//        a = new Arvonta(osallistujat);
-//        a.parienArvonta();
-//        
-//        assertEquals("Sinun lahjan saajasi on Ykkönen", a.getPari("Kakkonen"));
-//        assertEquals("Sinun lahjan saajasi on Kakkonen", a.getPari("Ykkönen"));
-//    }
+    @Test
+    public void palauttaaOikeinKunKaksiOsallistujaa() {
+        osallistujat.add(new Henkilo("Ykkönen", ""));
+        osallistujat.add(new Henkilo("Kakkonen", ""));
+        
+        a = new Arvonta(osallistujat);
+        a.parienArvonta();
+        
+        assertEquals("Annat lahjan henkilölle Ykkönen", a.getPari("Kakkonen"));
+        assertEquals("Annat lahjan henkilölle Kakkonen", a.getPari("Ykkönen"));
+    }
     
-//    @Test
-//    public void arvotuillaEiItseaParina() {
-//        osallistujat.add("Kirsi");
-//        osallistujat.add("Pekka");
-//        osallistujat.add("Marjukka");
-//        osallistujat.add("Paavo");
-//        
-//        a = new Arvonta(osallistujat);
-//        a.parienArvonta();
-//        
-//        for (Henkilo henkilo : a.getArvotut().keySet()) {
-//            assertFalse(henkilo.getName().equals(a.getArvotut().get(henkilo.getName())));
-//        }
-//        
-//        
-//    }
+    @Test
+    public void arvotuillaEiItseaParina() {
+        osallistujat.add(new Henkilo("Kirsi", ""));
+        osallistujat.add(new Henkilo("Pekka", ""));
+        osallistujat.add(new Henkilo("Marjukka", ""));
+        osallistujat.add(new Henkilo("Paavo", ""));
+        
+        a = new Arvonta(osallistujat);
+        a.parienArvonta();
+        
+        for (Henkilo henkilo : a.getArvotut().keySet()) {
+            assertFalse(henkilo.getName().equals(a.getArvotut().get(henkilo.getName())));
+        }
+        
+        
+    }
+    
+    
     
     
     // TODO add test methods here.

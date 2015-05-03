@@ -18,7 +18,8 @@ import javax.swing.WindowConstants;
 import lahjaArpoja.logiikka.Arvonta;
 
 /**
- *
+ *Luokka on uusi käyttöliittymä, jossa on mahdollista selvittää arvottuja henkilöpareja
+ * sekä kaikkia lahjatoiveita.
  * @author lauranor
  */
 public class LahjaKayttoLiittyma implements Runnable {

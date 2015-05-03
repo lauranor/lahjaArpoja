@@ -1,16 +1,16 @@
 package lahjaArpoja.logiikka;
-/* *
- * Luokka 
- */
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
-
+/* *
+ * Luokka arpoo sille parametrina annetulla listalla olevien henkilöiden
+ * välisesti lahjan saajan jokaiselle osallistujalle.
+ */
 public class Arvonta {
 
-    private HashMap<Henkilo, Henkilo> arvotut;                                    //Valmis HashMap, jossa pareina lahjan antaja ja saaja
-    private ArrayList<Henkilo> osallistujat;                                     //Arvontaan osallistuvat
+    private HashMap<Henkilo, Henkilo> arvotut;                                  //Valmis HashMap, jossa pareina lahjan antaja ja saaja
+    private ArrayList<Henkilo> osallistujat;                                    //Arvontaan osallistuvat
     private int[] indeksit;                                                     //Arvottujen parien indeksit välillä 1..osallistujat.size+1
 
     public Arvonta(ArrayList osallistujat) {
@@ -20,16 +20,15 @@ public class Arvonta {
 
     /**
      * Arpoo osallistujille pariksi indeksin, jonka perusteella jokainen osallistuja saa
-     * parikseen toisen listan osallistujista.
+     * parikseen yhden osallistujalistan henkilöistä.
      */
     public void parienArvonta() {
 
         if (osallistujat.size() <= 1) {
-            System.out.println("Anna enemmän osallistujia.");
             return;
         }
 
-        for (Henkilo osallistuja : osallistujat) {                               //Jokaiselle osallistujalle saadaan
+        for (Henkilo osallistuja : osallistujat) {                              //Jokaiselle osallistujalle saadaan
             int random = getRandom(osallistujat.size());                        //pari arpomalla indeksi.
 
             while (onkoListalla(random)) {                                      //Tarkistetaan ettei indeksi ole vielä arvottujen joukossa
@@ -41,12 +40,10 @@ public class Arvonta {
         }
 
         if (!onkoItseParina()) {
-//            System.out.println("\nArvotaan uudestaan");
             tyhjennaIndeksit();
             parienArvonta();                                                    //jos itsensä parina, uusi arvonta.
 
         } else if (onkoItseParina()) {
-//            System.out.println("Arvonta suoritettu onnistuneesti.");
 
             ArvottuLista lista = new ArvottuLista(osallistujat, indeksit);
             arvotut = lista.laitaListalle();
@@ -119,6 +116,10 @@ public class Arvonta {
         return "Et ole mukana arvonnassa :(";
     }
     
+    /**
+     * Palauttaa HashMapin, jossa avaimena lahjan antaja, ja arvona lahjan saaja.
+     * @return HashMap lahjan antaja - saaja -pareista
+     */
     public HashMap<Henkilo, Henkilo> getArvotut() {
         return arvotut;
     }

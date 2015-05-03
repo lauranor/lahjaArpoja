@@ -23,6 +23,11 @@ import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import lahjaArpoja.logiikka.Arvonta;
 
+/**
+ *Luokka on uusi käyttöliittymä, johon voidaan syöttää nimiä ja lahjatoiveita
+ * sekä käynnistää arvonta mukaa ilmoitettujen henkilöiden välillä.
+ * @author lauranor
+ */
 public class Kayttoliittyma implements Runnable {
 
     private JFrame frame;
@@ -57,11 +62,8 @@ public class Kayttoliittyma implements Runnable {
     }
 
     private void luoKomponentit(Container container) throws IOException {
-//        JLabel contentPane = new JLabel();
 
-//        contentPane.setIcon((Icon) new File("christmas-tree.png"));
         GridLayout layout = new GridLayout(4, 2);
-//        FlowLayout layout = new FlowLayout(2, 3, 4);
         container.setLayout(layout);
 
         JLabel nimiTeksti = new JLabel("Anna nimesi: ");
@@ -71,30 +73,31 @@ public class Kayttoliittyma implements Runnable {
         toivekentta = new JTextField();
         kuuntelija.setToivekentta(toivekentta);
 
-        Image img = ImageIO.read(getClass().getResource("resources/paketti.jpg")); 
+        JLabel kuva = new JLabel();
+        try {
+            Image paketti = ImageIO.read(getClass().getResource("/paketti.jpg"));
+            kuva.setIcon(new ImageIcon(paketti));
+        } catch (IOException e) {
+            //ei tehdä mitään jos kuvan lataaminen epäonnistuu
+        }
 
-        ImageIcon paketti = new ImageIcon("paketti.jpg");
 
-//        JButton arvontaNappi = new JButton("Suorita arvonta");
-        JButton arvontaNappi = new JButton("Suorita arvonta");
-        arvontaNappi.setIcon(new ImageIcon(img));
-
+        JButton arvontaNappi = new JButton("Arvo parit");
         arvontaNappi.addActionListener(kuuntelija);
 
         JButton lisaysNappi = new JButton("Lisää arvontaan!");
         lisaysNappi.addActionListener(kuuntelija);
 
-        JButton naytaNappi = new JButton("Näytä osallistujat");
-        naytaNappi.addActionListener(kuuntelija);
-
+//        JButton naytaNappi = new JButton("Näytä osallistujat");
+//        naytaNappi.addActionListener(kuuntelija);
         container.add(nimiTeksti);
         container.add(nimikentta);
         container.add(toiveTeksti);
         container.add(toivekentta);
         container.add(arvontaNappi);
         container.add(lisaysNappi);
-        container.add(naytaNappi);
-
+        container.add(kuva);
+//        container.add(naytaNappi);
     }
 
     public JFrame getFrame() {
@@ -124,10 +127,4 @@ public class Kayttoliittyma implements Runnable {
         return arvonta;
     }
 
-    /**
-     * Piilottaa ikkunan, jolla
-     */
-//    public void suljeArvontaIkkuna() {
-//        frame.setVisible(false);
-//    }
 }

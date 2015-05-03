@@ -6,6 +6,13 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JTextField;
 
+/**
+ * luokka kuuntelee käyttäjän syöttämät nimen sekä lahjatoiveen, ja nimen
+ * ollessa oikeaa muotoa luo uuden Henkilo-olion sekä käynnistää lopuksi
+ * arvonnan.
+ *
+ * @author lauranor
+ */
 public class HenkilonLisaysKuuntelija implements ActionListener {
 
     private JTextField nimiKentta;
@@ -16,22 +23,36 @@ public class HenkilonLisaysKuuntelija implements ActionListener {
     public HenkilonLisaysKuuntelija(Kayttoliittyma kl) {
         henkilot = new ArrayList();
         kayttoliittyma = kl;
-
     }
 
+    
+    /**
+    *Tarkistaa, mitä nappia on painettu. "Arvo parit" käynnistää arvonnan,  
+    *"Lisää arvontaan" lisää uuden henkilön arvontaan.
+    */
     @Override
     public void actionPerformed(ActionEvent ae) {
         String nappi = ae.getActionCommand();
 
-        if (nappi.equals("Suorita arvonta")) {
-            suoritaArvonta();
-            LahjaKayttoLiittyma lkl = new LahjaKayttoLiittyma(henkilot, kayttoliittyma, this);
-            lkl.run();
+        if (nappi.equals("Arvo parit")) {
+            if (henkilot.size() < 2) {
+                nimiKentta.setText("Anna lisää osallistujia!");
+            } else {
+                suoritaArvonta();
+                LahjaKayttoLiittyma lkl = new LahjaKayttoLiittyma(henkilot, kayttoliittyma, this);
+                lkl.run();
+            }
         } else if (nappi.equals("Lisää arvontaan!")) {
-            lisaaArvontaan();
-        } else if (nappi.equals("Näytä osallistujat")) {
-            tulostaOsallistujat();
+            if (nimiKentta.getText().equals("") || nimiKentta.getText().equals("Anna ensin nimesi") || nimiKentta.getText().equals("Anna lisää osallistujia!")) {
+                this.nimiKentta.setText("Anna ensin nimesi");
+
+            } else {
+                lisaaArvontaan();
+            }
         }
+//        } else if (nappi.equals("Näytä osallistujat")) {
+//            tulostaOsallistujat();
+//        }
 
     }
 
@@ -43,49 +64,24 @@ public class HenkilonLisaysKuuntelija implements ActionListener {
         this.lahjatoiveKentta = toive;
     }
 
-    
-    /**
-     * Tulostaa arvontaan ilmoitettujen henkilöiden nimet.
-     */
-    public void tulostaOsallistujat() {
-        for (Henkilo h : henkilot) {
-            System.out.println(h.getName());
-        }
-    }
-
-    
     private void suoritaArvonta() {
-        System.out.println("arvotaan parit.");
         kayttoliittyma.arvoParit(henkilot);
     }
-    
+
     /**
      * Jos nimikentässä on tekstiä, luodaan uusi Henkilö-olio, joka lisätään
-     * ArrayList henkilot -listaan.
-     * Jos nimi tyhjä, palataan alkuruutuun.
+     * ArrayList henkilot -listaan. Jos nimi tyhjä, palataan alkuruutuun.
      */
     private void lisaaArvontaan() {
         if (nimiKentta.getText().equals("")) {
-                System.out.println("Et antanut oikeaa nimeä, yritä uudelleen.");
-            } else {
-                System.out.println("lisätään henkilö arvontaan.");
-                Henkilo henkilo = new Henkilo(nimiKentta.getText(), lahjatoiveKentta.getText());
-                henkilot.add(henkilo);
-                kayttoliittyma.tyhjennaNapit();
-            }
+            System.out.println("Et antanut oikeaa nimeä, yritä uudelleen.");
+        } else {
+            Henkilo henkilo = new Henkilo(nimiKentta.getText(), lahjatoiveKentta.getText());
+            henkilot.add(henkilo);
+            kayttoliittyma.tyhjennaNapit();
+        }
     }
-    
-//    private void naytaParit() {
-//        if (kayttoliittyma.getArvonta().getArvotut().isEmpty()) {
-//            throw new IllegalArgumentException("ei arvottuja pareja");
-//        }
-//        HashMap<Henkilo, Henkilo> parit = kayttoliittyma.getArvonta().getArvotut();
-//        
-//        for (Henkilo henkilo : parit.keySet()) {
-//            System.out.println(henkilo.getName() + " antaa lahjan henkilölle " + parit.get(henkilo).getName());
-//        }
-//    }
-    
+
     public ArrayList getHenkilot() {
         return this.henkilot;
     }

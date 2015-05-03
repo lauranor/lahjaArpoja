@@ -1,9 +1,9 @@
 package lahjaArpoja.logiikka;
 
-import java.util.Objects;
-
-
-
+/** 
+ * Henkilo-olio, jolla on nimi, lahjatoive ja toivetta tarkentavat kysymykset.
+ * @author lauranor
+ */
 public class Henkilo {
 
     private String nimi;

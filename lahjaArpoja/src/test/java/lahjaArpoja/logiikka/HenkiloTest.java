@@ -45,8 +45,20 @@ public class HenkiloTest {
     }
     
     @Test
+    public void palauttaaToiveenOikein() {
+        assertEquals("kissa", h.getToive());
+    }
+    
+    @Test
     public void palauttaaToStringOikein() {
         assertEquals("Pekka", h.toString());
+    }
+    
+    @Test
+    public void palauttaaEsitetynKysymyksenOikein() {
+        h.setKysymykset("minkä värinen kissa?");
+        
+        assertEquals("Esitetyt kysymykset: \nminkä värinen kissa?\n", h.getKysymykset());
     }
 
     // TODO add test methods here.
