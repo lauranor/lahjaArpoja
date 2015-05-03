@@ -51,3 +51,13 @@
 23.4		1,5h
 
 24.4		2,5h		
+
+-----------------------------
+
+28.4		1,5h
+
+30.4		1h		testien korjausta
+
+2.5		2h		dokumenttien kirjoittelu, javadocsien lisäys
+
+3.5		6h		käyttöliittymän yksinkertaistus, dokumenttien kirjoittelu
