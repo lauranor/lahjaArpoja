@@ -6,4 +6,12 @@ Arpojaan pitää voida tallettaa myös henkilöön liitettyjä lahjatoiveita, ja
 
 **Kaikkien käyttäjien toiminnot:** 
 
+- Nimellä ja salasanalla kirjautuminen
+	* onnistuu jos nimi-salasana-pari oikein
+
+- Oman lahjansaajan tarkistaminen
+
+- Oman lahjatoiveen esittäminen
+
+- Muiden lahjatoiveiden kommentoiminen
 

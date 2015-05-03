@@ -1,0 +1,18 @@
+Lahja-arpojan logiikka-pakkaus on testattu kattavasti kaikkien public-määreisten metodien osalta. Valitettavasti iso osa toimintaa on joutunut osaksi käyttöliittymää, joten käyttöliittymää on jouduttu testaamaan käsin.
+
+Käyttöliittymä:
+Arvontaan osallistuminen ilman nimeä - ohjelma ei hyväksy tyhjää nimeä.
+Arvontaan osallistuminen ilman lahjatoivetta - onnistuu, sillä toivetta voi täydentää myöhemmin.
+
+Arvonnan suorittaminen kun osallistujia on alle kaksi - ei onnistu.
+
+Lahjakäyttöliittymä:
+Lahjaparin tarkistus ilman nimeä - ei onnistu, Et ole mukana -ilmoitus.
+Lahjaparin tarkistus väärällä nimellä - Et ole mukana -ilmoitus.
+
+Oman toiveen tarkastaminen ilman nimeä - ei onnistu, virheilmoitus.
+Oman toiveen tarkistaminen väärällä nimellä - virheilmoitus.
+
+Lahjatoiveen kommentointi ilman toiveen esittäjän nimeä - virheilmoitus.
+
+Lahjakäyttöliittymä päivitetään paivita-metodilla, joka avaa uuden ikkunan, mutta ei sulje vanhaa.

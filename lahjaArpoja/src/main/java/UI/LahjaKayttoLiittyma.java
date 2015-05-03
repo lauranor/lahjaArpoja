@@ -46,6 +46,7 @@ public class LahjaKayttoLiittyma implements Runnable {
         lahjakuuntelija = new LahjaKuuntelija(this);
     }
 
+    
     @Override
     public void run() {
         frame = new JFrame("Lahjatoiveet");
@@ -60,6 +61,14 @@ public class LahjaKayttoLiittyma implements Runnable {
 
     }
 
+    /**
+     * lisää kolme uutta paneelia käyttöliittymään:
+     * firstPanel mahdollistaa oman parin kysymisen,
+     * secondPanel mahdollistaa oman lahjatoiveen muokkauksen ja
+     * thirdPanel näyttää kaikkien lahjatoiveet, esitetyt kommentit sekä
+     * mahdollistaa lahjatoiveiden kommentoinnin.
+     * @param container 
+     */
     public void luoKomponentit(Container container) {
 
         container.add(firstPanel(), BorderLayout.NORTH);
@@ -140,6 +149,9 @@ public class LahjaKayttoLiittyma implements Runnable {
         return henkilokuuntelija.getHenkilot();
     }
 
+    /**
+     * tyhjentää nimikentän.
+     */
     public void tyhjennaKentta() {
         this.nimi.setText("");
     }
@@ -160,6 +172,11 @@ public class LahjaKayttoLiittyma implements Runnable {
         return uusiToive.getText();
     }
 
+    /**
+     * Etsii arvontaan osallistuneista parametrina annettua nimeä vastaavan.
+     * @param annettuNimi
+     * @return henkilö jonka getNimi() on annettuNimi.
+     */
     public Henkilo getHenkilo(String annettuNimi) {
         if (annettuNimi.isEmpty()) {
             JOptionPane.showMessageDialog(getFrame(), "Anna ensin nimesi!");
@@ -167,7 +184,6 @@ public class LahjaKayttoLiittyma implements Runnable {
         for (Henkilo h : henkilot) {
 
             if (h.getName().equals(annettuNimi)) {
-                System.out.println("löytyi henkilö " + h.getName());
                 return h;
             }
         }
@@ -175,6 +191,10 @@ public class LahjaKayttoLiittyma implements Runnable {
         return null;
     }
     
+    /**
+     * tietojen muututtua päivittää ruudun, eli käynnistää uuden ruudun jolla
+     * päivitetyt tiedot näkyvät. Ei sulje edellistä ikkunaa, en osannut.
+     */
     public void paivita() {
         run();
     }

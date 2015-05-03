@@ -8,7 +8,7 @@ public class Henkilo {
 
     private String nimi;
     private String lahjatoive;
-    private String kysymykset = "Esitetyt kysymykset: \n";
+    private String kysymykset = "Esitetyt kysymykset: ";
 
     public Henkilo(String nimi, String toive) {
         this.nimi = nimi;
@@ -24,7 +24,7 @@ public class Henkilo {
     }
     
     public void setKysymykset(String kysymys) {
-        kysymykset+=kysymys + "\n";
+        kysymykset+=kysymys + " ";
     }
     
     public String getKysymykset() {

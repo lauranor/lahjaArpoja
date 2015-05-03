@@ -30,6 +30,7 @@ public class HenkilonLisaysKuuntelija implements ActionListener {
     /**
     *Tarkistaa, mitä nappia on painettu. "Arvo parit" käynnistää arvonnan,  
     *"Lisää arvontaan" lisää uuden henkilön arvontaan.
+     * @param ae
     */
     @Override
     public void actionPerformed(ActionEvent ae) {
