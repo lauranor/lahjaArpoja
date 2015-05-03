@@ -36,4 +36,8 @@ public class Henkilo {
         return this.getName();
     }
     
+    public void setToive(String toive) {
+        this.lahjatoive = toive;
+    }
+    
 }

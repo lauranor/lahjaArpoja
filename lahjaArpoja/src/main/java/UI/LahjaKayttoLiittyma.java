@@ -36,6 +36,8 @@ public class LahjaKayttoLiittyma implements Runnable {
     private JTextField nimi;
     private JTextField toive;
     private JTextField uusiToive;
+    private JTextField kenen;
+    private JTextField kommentti;
 
     public LahjaKayttoLiittyma(ArrayList h, Kayttoliittyma k, HenkilonLisaysKuuntelija hlk) {
         this.henkilot = h;
@@ -47,7 +49,7 @@ public class LahjaKayttoLiittyma implements Runnable {
     @Override
     public void run() {
         frame = new JFrame("Lahjatoiveet");
-        frame.setPreferredSize(new Dimension(1000, 400));
+        frame.setPreferredSize(new Dimension(1500, (henkilot.size()+1)*100));
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,26 +61,11 @@ public class LahjaKayttoLiittyma implements Runnable {
     }
 
     public void luoKomponentit(Container container) {
-//        GridLayout layout = new GridLayout(2, 4, 5, 10);
-//        container.setLayout(layout);
 
-//        JPanel parinKysely = new JPanel(new GridLayout(2, 4, 5, 10));
-//        JLabel nimiTeksti = new JLabel("Anna oma nimesi: ");
-//        nimi = new JTextField();
-//        lahjakuuntelija.setNimi(nimi);
-//
-//        JButton muokkaus = new JButton("Muokkaa");
-//        muokkaus.addActionListener(lahjakuuntelija);
-//        JLabel toiveTeksti = new JLabel("Uusi toiveesi:");
-//        toive = new JTextField();
         container.add(firstPanel(), BorderLayout.NORTH);
         container.add(secondPanel(), BorderLayout.CENTER);
         container.add(thirdPanel(), BorderLayout.SOUTH);
-//        container.add(nimi);
-//
-//        container.add(toiveTeksti);
-//        container.add(toive);
-//        container.add(muokkaus);
+
     }
 
     private JPanel firstPanel() {
@@ -107,10 +94,7 @@ public class LahjaKayttoLiittyma implements Runnable {
         uusiToive = toive;
         JButton muokkaus = new JButton("Muokkaa");
         muokkaus.addActionListener(lahjakuuntelija);
-        muokkaus.setPreferredSize(new Dimension(10, 10));
-
-        JButton kysymykset = new JButton("Näytä kysymykseni");
-        kysymykset.addActionListener(lahjakuuntelija);
+        muokkaus.setPreferredSize(new Dimension(50, 50));
 
         muokkauskysely.add(toiveTeksti);
         muokkauskysely.add(toive);
@@ -120,7 +104,7 @@ public class LahjaKayttoLiittyma implements Runnable {
     }
 
     private JPanel thirdPanel() {
-        JPanel lahjatoiveet = new JPanel(new GridLayout(henkilot.size(), 3));
+        JPanel lahjatoiveet = new JPanel(new GridLayout(henkilot.size() +1, 3));
 
         for (Henkilo h : henkilot) {
             JLabel nimi = new JLabel(h.getName());
@@ -128,15 +112,19 @@ public class LahjaKayttoLiittyma implements Runnable {
 
             JLabel toive = new JLabel("lahjatoive: " + h.getToive());
             JLabel esitetyt = new JLabel(h.getKysymykset());
-//            kysymys = new JTextField("oma kysymyksesi:");
 
-//            JButton kysy = new JButton("Kysy!");
-//            kysy.addActionListener(new Kysymyskuuntelija(nimi.getText(), h, this));
             lahjatoiveet.add(nimi);
             lahjatoiveet.add(toive);
             lahjatoiveet.add(esitetyt);
 
         }
+        kenen = new JTextField("Kenen toive?");
+        kommentti = new JTextField("Kirjoita kommentti tähän");
+        JButton kommentoi = new JButton("Kommentoi");
+        kommentoi.addActionListener(lahjakuuntelija);
+        lahjatoiveet.add(kenen);
+        lahjatoiveet.add(kommentti);
+        lahjatoiveet.add(kommentoi);
         return lahjatoiveet;
     }
 
@@ -160,16 +148,34 @@ public class LahjaKayttoLiittyma implements Runnable {
         return this.frame;
     }
     
-    private Henkilo getHenkilo() {
-        if (nimi.getText().isEmpty()) {
+    public String getKenen() {
+        return this.kenen.getText();
+    }
+    
+    public String getKommentti() {
+        return this.kommentti.getText();
+    }
+    
+    public String getUusiToive() {
+        return uusiToive.getText();
+    }
+
+    public Henkilo getHenkilo(String annettuNimi) {
+        if (annettuNimi.isEmpty()) {
             JOptionPane.showMessageDialog(getFrame(), "Anna ensin nimesi!");
-        }
+        } else {
         for (Henkilo h : henkilot) {
-            
-            if (h.getName().equals(nimi.getText())) {
+
+            if (h.getName().equals(annettuNimi)) {
+                System.out.println("löytyi henkilö " + h.getName());
                 return h;
             }
         }
+    }
         return null;
+    }
+    
+    public void paivita() {
+        run();
     }
 }

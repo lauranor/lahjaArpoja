@@ -72,7 +72,7 @@ public class Kayttoliittyma implements Runnable {
         toivekentta = new JTextField();
         kuuntelija.setToivekentta(toivekentta);
 
-        JPanel panel = new JPanel(new GridLayout(1, 1, 10, 10));
+        JPanel panel = new JPanel(new GridLayout(1, 1));
         JLabel kuva = new JLabel();
         kuva.setPreferredSize(new Dimension(150, 50));
 

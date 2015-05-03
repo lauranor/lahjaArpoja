@@ -9,24 +9,26 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import lahjaArpoja.logiikka.Henkilo;
 
 /**
- *Luokka kuuntelee nappien painamiset.
+ * Luokka kuuntelee nappien painamiset.
+ *
  * @author lauranor
  */
 public class LahjaKuuntelija implements ActionListener {
+
     private LahjaKayttoLiittyma lahjakl;
     private String nimi;
-    
+
     public LahjaKuuntelija(LahjaKayttoLiittyma lkl) {
         this.lahjakl = lkl;
     }
-    
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
         String nappi = e.getActionCommand();
-        
+
         if (nappi.equals("Näytä lahjaparini")) {
             String pari = lahjakl.getArvonta().getPari(lahjakl.getNimi());
             JOptionPane.showMessageDialog(lahjakl.getFrame(), pari);
@@ -34,18 +36,32 @@ public class LahjaKuuntelija implements ActionListener {
         } else if (nappi.equals("Näytä lahjatoiveet")) {
             Lahjatoiveet toiveet = new Lahjatoiveet(lahjakl.getHenkilot());
             toiveet.run();
-        } else if (nappi.equals("Muokkaa omaa toivettasi")) {
-//            String toive = lahjakl.
-        } else if (nappi.equals("Näytä kysymykseni")) {
-            
-            JOptionPane.showMessageDialog(lahjakl.getFrame(), "HEi!");
+        } else if (nappi.equals("Muokkaa")) {
+            Henkilo h = lahjakl.getHenkilo(lahjakl.getNimi());
+            if (h == null) {
+                System.out.println("henkilö null!");
+            } else {
+            h.setToive(lahjakl.getUusiToive());
+            lahjakl.paivita();
+            }
+        } else if (nappi.equals("Kommentoi")) {
+            Henkilo h = lahjakl.getHenkilo(lahjakl.getKenen());
+            if (h == null) {
+                JOptionPane.showMessageDialog(lahjakl.getFrame(), "Nappi ei toimi! Annoitko varmasti lahjan saajan nimen?");
+            } else {
+                String kommentti = lahjakl.getKommentti();
+                h.setKysymykset(kommentti);
+                lahjakl.paivita();
+            }
+
         }
+
     }
-    
+
     public void setNimi(JTextField n) {
         this.nimi = n.getText();
     }
-    
+
 //    /**
 //    * Avaa uuden ruudun, jolla näkyy annetun nimen arvottu pari.
 //    * @param nimi oma nimi
@@ -55,5 +71,4 @@ public class LahjaKuuntelija implements ActionListener {
 //        ruutu.run();
 //        
 //    }
-    
 }
