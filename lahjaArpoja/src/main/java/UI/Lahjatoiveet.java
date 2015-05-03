@@ -69,8 +69,9 @@ public class Lahjatoiveet implements Runnable {
 //            container.add(kysy);
         }
 
-        JButton muokkaus = new JButton("Muokkaa omaa toivettasi");
-        container.add(muokkaus);
+        
+//        JButton muokkaus = new JButton("Muokkaa omaa toivettasi");
+//        container.add(muokkaus);
 
 
     }

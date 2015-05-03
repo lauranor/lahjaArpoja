@@ -7,6 +7,7 @@ package UI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -27,28 +28,32 @@ public class LahjaKuuntelija implements ActionListener {
         String nappi = e.getActionCommand();
         
         if (nappi.equals("Näytä lahjaparini")) {
-            
             String pari = lahjakl.getArvonta().getPari(lahjakl.getNimi());
-            naytaPariRuudulla(pari);
+            JOptionPane.showMessageDialog(lahjakl.getFrame(), pari);
             lahjakl.tyhjennaKentta();
         } else if (nappi.equals("Näytä lahjatoiveet")) {
             Lahjatoiveet toiveet = new Lahjatoiveet(lahjakl.getHenkilot());
             toiveet.run();
-        }   
+        } else if (nappi.equals("Muokkaa omaa toivettasi")) {
+//            String toive = lahjakl.
+        } else if (nappi.equals("Näytä kysymykseni")) {
+            
+            JOptionPane.showMessageDialog(lahjakl.getFrame(), "HEi!");
+        }
     }
     
     public void setNimi(JTextField n) {
         this.nimi = n.getText();
     }
     
-    /**
-    * Avaa uuden ruudun, jolla näkyy annetun nimen arvottu pari.
-    * @param nimi oma nimi
-    */
-    private void naytaPariRuudulla(String nimi) {
-        PariRuudulla ruutu = new PariRuudulla(nimi);
-        ruutu.run();
-        
-    }
+//    /**
+//    * Avaa uuden ruudun, jolla näkyy annetun nimen arvottu pari.
+//    * @param nimi oma nimi
+//    */
+//    private void naytaPariRuudulla(String nimi) {
+//        PariRuudulla ruutu = new PariRuudulla(nimi);
+//        ruutu.run();
+//        
+//    }
     
 }
