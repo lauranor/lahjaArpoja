@@ -25,6 +25,13 @@ public class LahjaKuuntelija implements ActionListener {
         this.lahjakl = lkl;
     }
 
+    /**
+     * metodi toteuttaa painettuja nappeja vastaavat toiminnot:
+     * näyttää annetun henkilön lahjaparin,
+     * muokkaa omaa toivetta,
+     * ja lisää muiden toiveisiin kommentteja.
+     * @param e 
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String nappi = e.getActionCommand();
@@ -33,9 +40,9 @@ public class LahjaKuuntelija implements ActionListener {
             String pari = lahjakl.getArvonta().getPari(lahjakl.getNimi());
             JOptionPane.showMessageDialog(lahjakl.getFrame(), pari);
             lahjakl.tyhjennaKentta();
-        } else if (nappi.equals("Näytä lahjatoiveet")) {
-            Lahjatoiveet toiveet = new Lahjatoiveet(lahjakl.getHenkilot());
-            toiveet.run();
+//        } else if (nappi.equals("Näytä lahjatoiveet")) {
+//            Lahjatoiveet toiveet = new Lahjatoiveet(lahjakl.getHenkilot());
+//            toiveet.run();
         } else if (nappi.equals("Muokkaa")) {
             Henkilo h = lahjakl.getHenkilo(lahjakl.getNimi());
             if (h == null) {

@@ -1,0 +1,9 @@
+Ohjelmassa on logiikka-pakkaus, jonka sisällä on itse arvonnassa tapahtuva logiikka sekä Henkilö-olion luokka. Pakkauksessa on myös luokka ArvottuLista, jonka tarkoitus on valmistaa HashMap joka sisältää lahjan antajat sekä arvotut saajat pareina.
+Valitettavasti myös käyttöliittymille on kasautunut paljon logiikkaa, ensi kerralla parempi suunnittelu..
+
+Käyttöliittymä ja henkilönlisäyskuuntelija avaavat ensimmäisen ikkunan, ja toteuttavat uusien henkilöiden luomisen ja niiden lisäämisen listaan, jonka pohjalta arvonta toteutetaan. "Arvo parit" nappi suorittaa arvonnan, minkä jälkeen avautuu uusi käyttöliittymä.
+
+Lahjakäyttöliittymä ja lahjakuuntelija hoitavat lahjansaajan tarkistamisen, lahjatoiveiden näyttämisen, kommentoimisen ja täydentämisen. 
+
+
+

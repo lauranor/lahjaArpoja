@@ -4,6 +4,7 @@ import lahjaArpoja.logiikka.Henkilo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -36,7 +37,8 @@ public class HenkilonLisaysKuuntelija implements ActionListener {
 
         if (nappi.equals("Arvo parit")) {
             if (henkilot.size() < 2) {
-                nimiKentta.setText("Anna lisää osallistujia!");
+                JOptionPane.showMessageDialog(kayttoliittyma.getFrame(), "Anna lisää osallistujia!");
+//                nimiKentta.setText("Anna lisää osallistujia!");
             } else {
                 suoritaArvonta();
                 LahjaKayttoLiittyma lkl = new LahjaKayttoLiittyma(henkilot, kayttoliittyma, this);
@@ -44,7 +46,7 @@ public class HenkilonLisaysKuuntelija implements ActionListener {
             }
         } else if (nappi.equals("Lisää arvontaan!")) {
             if (nimiKentta.getText().equals("") || nimiKentta.getText().equals("Anna ensin nimesi") || nimiKentta.getText().equals("Anna lisää osallistujia!")) {
-                this.nimiKentta.setText("Anna ensin nimesi");
+                JOptionPane.showMessageDialog(kayttoliittyma.getFrame(), "Anna ensin nimesi");
 
             } else {
                 lisaaArvontaan();
