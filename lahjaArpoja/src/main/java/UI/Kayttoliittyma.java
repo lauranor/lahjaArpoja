@@ -73,16 +73,16 @@ public class Kayttoliittyma implements Runnable {
         kuuntelija.setToivekentta(toivekentta);
 
         JPanel panel = new JPanel(new GridLayout(1, 1));
-        JLabel kuva = new JLabel();
-        kuva.setPreferredSize(new Dimension(150, 50));
-
-        try {
-            Image paketti = ImageIO.read(getClass().getResource("/paketti.jpg"));
-            kuva.setIcon(new ImageIcon(paketti));
-        } catch (IOException e) {
-            //ei tehdä mitään jos kuvan lataaminen epäonnistuu
-        }
-        panel.add(kuva);
+//        JLabel kuva = new JLabel();
+//        kuva.setPreferredSize(new Dimension(150, 50));
+//
+//        try {
+//            Image paketti = ImageIO.read(getClass().getResource("/paketti.jpg"));
+//            kuva.setIcon(new ImageIcon(paketti));
+//        } catch (IOException e) {
+//            //ei tehdä mitään jos kuvan lataaminen epäonnistuu
+//        }
+//        panel.add(kuva);
 
         JButton arvontaNappi = new JButton("Arvo parit");
         arvontaNappi.addActionListener(kuuntelija);
