@@ -111,9 +111,9 @@ public class Kayttoliittyma implements Runnable {
         toivekentta.setText("");
     }
 
-    public void paintComponent(Graphics g) {
-        g.drawImage(img, 0, 0, null);
-    }
+//    public void paintComponent(Graphics g) {
+//        g.drawImage(img, 0, 0, null);
+//    }
 
     /**
      * Käynnistää uuden arvonnan, jolle annetaan parametrina saatu ArrayList.
